@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "precise32"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   config.vm.network :hostonly, "33.33.33.33"
   config.vm.forward_port 3000, 3000
@@ -15,10 +15,13 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo, :run_list => ["recipe[application]"] do |chef|
     chef.json.merge!({
       :ruby  => { :version  => "1.9.3" },
-      :rails => { :app_name => "garden_cookbook",
+      :rails => { :app_name => "/opt/webapp/garden_cookbook",
                   :version  => "3.2.3",
                   :db_type  => "postgresql" }
     })
     chef.add_recipe "vim"
+    chef.add_recipe "git"
+    chef.add_recipe "yum"
+    chef.add_recipe "nginx"
   end
 end
