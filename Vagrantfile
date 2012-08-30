@@ -22,6 +22,6 @@ Vagrant::Config.run do |config|
     chef.add_recipe "vim"
     chef.add_recipe "git"
     chef.add_recipe "yum"
-    #chef.add_recipe "nginx"
+    chef.add_recipe "dotfiles"
   end
 end
