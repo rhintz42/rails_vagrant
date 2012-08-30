@@ -15,7 +15,7 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo, :run_list => ["recipe[application]"] do |chef|
     chef.json.merge!({
       :ruby  => { :version  => "1.9.3" },
-      :rails => { :app_name => "/opt/webapp/garden_cookbook",
+      :rails => { :app_name => "garden_cookbook",
                   :version  => "3.2.3",
                   :db_type  => "postgresql" }
     })
